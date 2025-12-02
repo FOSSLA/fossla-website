@@ -23,20 +23,24 @@ const isActive = (path: string) => (path === "/" ? normalizedPath === "/" : norm
           <span class="text-foreground"> LA</span>
         </span>
       </a>
-      <div class="hidden items-center gap-1 md:flex">
-        {navItems.map((item) => (
-          <a
-            href={item.href}
-            class={`px-4 py-2 text-sm transition-colors relative group ${
-              isActive(item.href) ? "text-primary" : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            {item.label}
-            {isActive(item.href) && (
-              <span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary shadow-[0_0_8px_hsl(var(--primary))]" />
-            )}
-          </a>
-        ))}
+      <div class="hidden items-center gap-1 md:flex" role="navigation" aria-label="Primary">
+        <ul class="flex items-center gap-1">
+          {navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class={`px-4 py-2 text-sm transition-colors relative group ${
+                  isActive(item.href) ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {item.label}
+                {isActive(item.href) && (
+                  <span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary shadow-[0_0_8px_hsl(var(--primary))]" />
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
         <a
           href="https://matrix.to/#/#fossla:matrix.org"
           class="ml-4 rounded border border-primary bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
@@ -55,20 +59,24 @@ const isActive = (path: string) => (path === "/" ? normalizedPath === "/" : norm
         <Icon name="lucide:x" class="hidden h-6 w-6" data-state="open" />
       </button>
     </div>
-    <div id="mobile-nav" class="hidden flex-col gap-2 border-t border-border py-4 md:hidden">
-      {navItems.map((item) => (
-        <a
-          href={item.href}
-          data-mobile-link
-          class={`rounded px-4 py-3 text-sm transition-colors ${
-            isActive(item.href)
-              ? "text-primary bg-secondary"
-              : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
-          }`}
-        >
-          {item.label}
-        </a>
-      ))}
+    <div id="mobile-nav" class="hidden flex-col gap-2 border-t border-border py-4 md:hidden" role="navigation" aria-label="Mobile">
+      <ul class="flex flex-col gap-2">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              data-mobile-link
+              class={`rounded px-4 py-3 text-sm transition-colors ${
+                isActive(item.href)
+                  ? "text-primary bg-secondary"
+                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+              }`}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
       <a
         href="https://matrix.to/#/#fossla:matrix.org"
         class="mx-4 mt-2 rounded border border-primary bg-primary px-4 py-2 text-center text-sm font-semibold text-primary-foreground"
@@ -77,32 +85,34 @@ const isActive = (path: string) => (path === "/" ? normalizedPath === "/" : norm
       </a>
     </div>
   </div>
-  <script type="module">
+  <script is:inline>
     const toggle = document.querySelector('[data-mobile-toggle]');
     const menu = document.getElementById('mobile-nav');
 
-    const updateIcons = (isOpen) => {
-      const openIcon = toggle?.querySelector('[data-state="open"]');
-      const closedIcon = toggle?.querySelector('[data-state="closed"]');
-      openIcon?.classList.toggle('hidden', !isOpen);
-      closedIcon?.classList.toggle('hidden', isOpen);
-    };
+    if (toggle && menu) {
+      const updateIcons = (isOpen) => {
+        const openIcon = toggle.querySelector('[data-state="open"]');
+        const closedIcon = toggle.querySelector('[data-state="closed"]');
+        openIcon?.classList.toggle('hidden', !isOpen);
+        closedIcon?.classList.toggle('hidden', isOpen);
+      };
 
-    updateIcons(false);
+      const setState = (open) => {
+        toggle.setAttribute('aria-expanded', String(open));
+        menu.classList.toggle('hidden', !open);
+        updateIcons(open);
+      };
 
-    const setState = (open) => {
-      toggle?.setAttribute('aria-expanded', String(open));
-      menu?.classList.toggle('hidden', !open);
-      updateIcons(open);
-    };
+      updateIcons(false);
 
-    toggle?.addEventListener('click', () => {
-      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-      setState(!isOpen);
-    });
+      toggle.addEventListener('click', () => {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        setState(!isOpen);
+      });
 
-    menu?.querySelectorAll('[data-mobile-link]').forEach((link) => {
-      link.addEventListener('click', () => setState(false));
-    });
+      menu.querySelectorAll('[data-mobile-link]').forEach((link) => {
+        link.addEventListener('click', () => setState(false));
+      });
+    }
   </script>
 </nav>
