@@ -1,0 +1,64 @@
+---
+import { Icon } from "astro-icon/components";
+const currentYear = new Date().getFullYear();
+---
+<footer class="border-t border-border bg-card">
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+      <div class="space-y-4">
+        <div class="flex items-center">
+          <span class="text-xl font-bold">
+            <span class="text-primary">FOSS</span>
+            <span class="text-foreground"> LA</span>
+          </span>
+        </div>
+        <p class="text-sm text-muted-foreground">
+          Building a thriving FOSS community in Ladakh.
+        </p>
+        <div class="flex gap-4">
+          <a href="https://github.com" class="text-muted-foreground transition hover:text-primary" aria-label="GitHub">
+            <Icon name="lucide:github" class="h-5 w-5" />
+          </a>
+          <a href="https://twitter.com" class="text-muted-foreground transition hover:text-primary" aria-label="Twitter">
+            <Icon name="lucide:twitter" class="h-5 w-5" />
+          </a>
+          <a href="mailto:contact@fossla.org" class="text-muted-foreground transition hover:text-primary" aria-label="Email">
+            <Icon name="lucide:mail" class="h-5 w-5" />
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="mb-4 font-bold text-foreground">Quick Links</h3>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li><a href="/about" class="transition hover:text-primary">About Us</a></li>
+          <li><a href="/projects" class="transition hover:text-primary">Projects</a></li>
+          <li><a href="/events" class="transition hover:text-primary">Events</a></li>
+          <li><a href="/blog" class="transition hover:text-primary">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mb-4 font-bold text-foreground">Community</h3>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li><a href="/team" class="transition hover:text-primary">Team</a></li>
+          <li><a href="/resources" class="transition hover:text-primary">Resources</a></li>
+          <li><a href="/about#conduct" class="transition hover:text-primary">Code of Conduct</a></li>
+          <li>
+            <a href="/projects" class="transition hover:text-primary">Contribute</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mb-4 font-bold text-foreground">Get In Touch</h3>
+        <p class="mb-4 text-sm text-muted-foreground">
+          Join our community and help us build a better tech ecosystem in Ladakh.
+        </p>
+        <a href="mailto:contact@fossla.org" class="text-sm text-primary transition hover:text-primary/80">
+          contact@fossla.org
+        </a>
+      </div>
+    </div>
+    <div class="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+      © {currentYear} FOSS LA. Built with ❤️ and Open Source.
+    </div>
+  </div>
+</footer>

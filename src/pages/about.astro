@@ -1,0 +1,70 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import { getEntry } from "astro:content";
+
+const about = await getEntry("pages", "about");
+const { hero, mission, vision, values, story, conduct } = about.data;
+---
+<BaseLayout title={about.data.title} description={hero.intro}>
+  <section class="container mx-auto px-4 pt-24 pb-20">
+    <div class="mx-auto mb-20 max-w-4xl text-center">
+      <h1 class="mb-6 text-4xl font-bold md:text-5xl">
+        About <span class="text-primary">FOSS LA</span>
+      </h1>
+      <p class="text-xl text-muted-foreground">{hero.intro}</p>
+    </div>
+
+    <div class="mb-20 grid gap-8 md:grid-cols-2">
+      <div class="rounded border border-primary/30 bg-card/50 p-6">
+        <h2 class="mb-4 text-2xl font-semibold">Our Mission</h2>
+        <p class="text-muted-foreground">{mission}</p>
+      </div>
+      <div class="rounded border border-primary/30 bg-card/50 p-6">
+        <h2 class="mb-4 text-2xl font-semibold">Our Vision</h2>
+        <p class="text-muted-foreground">{vision}</p>
+      </div>
+    </div>
+
+    <div class="mb-20">
+      <h2 class="mb-12 text-center text-3xl font-bold">Our Core Values</h2>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {values.map((value) => (
+          <div class="rounded border border-border bg-card/50 p-6 text-center transition hover:border-primary/50">
+            <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+              <Icon name={value.icon} class="h-6 w-6 text-primary" />
+            </div>
+            <h3 class="mb-2 text-lg font-semibold">{value.title}</h3>
+            <p class="text-sm text-muted-foreground">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mx-auto mb-20 max-w-4xl">
+      <h2 class="mb-8 text-3xl font-bold">Our Story</h2>
+      <div class="space-y-6 text-muted-foreground">
+        {story.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+
+    <div id="conduct" class="mx-auto max-w-4xl">
+      <div class="rounded border border-primary/30 bg-primary/5 p-6">
+        <h2 class="mb-4 text-2xl font-bold">Code of Conduct</h2>
+        <p class="mb-4 text-muted-foreground">
+          FOSS LA is committed to providing a welcoming and inclusive environment for everyone.
+        </p>
+        <ul class="list-disc space-y-2 pl-6 text-muted-foreground">
+          {conduct.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+        <p class="mt-4 text-muted-foreground">
+          Any behavior that contradicts these values will not be tolerated. We're here to build something amazing together.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

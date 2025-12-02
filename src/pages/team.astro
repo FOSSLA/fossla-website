@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+
+const members = await getCollection("team");
+const core = members.filter((member) => member.data.group === "core").sort((a, b) => a.data.name.localeCompare(b.data.name));
+const contributors = members.filter((member) => member.data.group === "contributor").sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const initials = (name: string) => name.split(" ").map((part) => part[0]).join("");
+---
+<BaseLayout title="Meet the Team" description="The passionate individuals building and growing the FOSS LA community.">
+  <section class="container mx-auto px-4 pt-24 pb-20">
+    <div class="mx-auto mb-16 max-w-4xl text-center">
+      <h1 class="mb-6 text-4xl font-bold md:text-5xl">
+        Meet the <span class="text-primary">Team</span>
+      </h1>
+      <p class="text-xl text-muted-foreground">
+        The passionate individuals building and growing the FOSS LA community.
+      </p>
+    </div>
+
+    <div class="mb-20">
+      <h2 class="mb-8 text-center text-3xl font-bold">Core Team</h2>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {core.map((member) => (
+          <article class="rounded border border-border bg-card/40 p-6 text-center transition hover:border-primary/50">
+            <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-primary/5 text-2xl font-bold text-primary">
+              {initials(member.data.name)}
+            </div>
+            <h3 class="text-xl font-semibold">{member.data.name}</h3>
+            {member.data.role && <p class="text-sm text-primary">{member.data.role}</p>}
+            {member.data.bio && <p class="mt-3 text-sm text-muted-foreground">{member.data.bio}</p>}
+            <div class="mt-4 flex justify-center gap-2">
+              {member.data.github && (
+                <a href={member.data.github} class="inline-flex h-8 w-8 items-center justify-center rounded hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label={`${member.data.name} on GitHub`}>
+                  <Icon name="lucide:github" class="h-4 w-4" />
+                </a>
+              )}
+              {member.data.twitter && (
+                <a href={member.data.twitter} class="inline-flex h-8 w-8 items-center justify-center rounded hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label={`${member.data.name} on Twitter`}>
+                  <Icon name="lucide:twitter" class="h-4 w-4" />
+                </a>
+              )}
+              {member.data.email && (
+                <a href={`mailto:${member.data.email}`} class="inline-flex h-8 w-8 items-center justify-center rounded hover:text-primary" aria-label={`Email ${member.data.name}`}>
+                  <Icon name="lucide:mail" class="h-4 w-4" />
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="mb-20">
+      <h2 class="mb-8 text-center text-3xl font-bold">Active Contributors</h2>
+      <div class="rounded border border-primary/30 bg-card/50 p-6">
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {contributors.map((contributor) => (
+            <div class="flex items-center gap-3 rounded border border-border px-3 py-2 transition hover:border-primary/50">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                {initials(contributor.data.name)}
+              </div>
+              <span class="text-sm text-foreground">{contributor.data.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-4xl rounded border border-primary/30 bg-primary/5 p-8 text-center">
+      <Icon name="lucide:users" class="mx-auto mb-4 h-12 w-12 text-primary" />
+      <h3 class="mb-4 text-2xl font-bold">Want to Join the Team?</h3>
+      <p class="mb-6 text-muted-foreground">
+        We're always looking for passionate individuals who want to contribute to our mission. Whether you're a developer, designer, writer, or organizer, there's a place for you.
+      </p>
+      <a href="https://matrix.to/#/#fossla:matrix.org" class="rounded border border-primary bg-primary px-6 py-2 font-semibold text-primary-foreground">
+        Get Involved
+      </a>
+    </div>
+  </section>
+</BaseLayout>

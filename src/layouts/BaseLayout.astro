@@ -1,0 +1,38 @@
+---
+import Navigation from "@/components/Navigation.astro";
+import Footer from "@/components/Footer.astro";
+import "@/styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "FOSS LA — Free & Open Source Software Ladakh",
+  description = "Building a thriving Free & Open Source Software community in Ladakh."
+} = Astro.props as Props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen flex flex-col bg-background text-foreground">
+    <Navigation />
+    <main class="flex-1 pt-16">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

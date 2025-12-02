@@ -1,0 +1,108 @@
+---
+import { Icon } from "astro-icon/components";
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/events", label: "Events" },
+  { href: "/blog", label: "Blog" },
+  { href: "/resources", label: "Resources" },
+  { href: "/team", label: "Team" }
+];
+
+const normalizedPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (path: string) => (path === "/" ? normalizedPath === "/" : normalizedPath.startsWith(path));
+---
+<nav class="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+  <div class="container mx-auto px-4">
+    <div class="flex h-16 items-center justify-between">
+      <a href="/" class="flex items-center group">
+        <span class="text-xl font-bold tracking-tight">
+          <span class="text-primary">FOSS</span>
+          <span class="text-foreground"> LA</span>
+        </span>
+      </a>
+      <div class="hidden items-center gap-1 md:flex">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class={`px-4 py-2 text-sm transition-colors relative group ${
+              isActive(item.href) ? "text-primary" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {item.label}
+            {isActive(item.href) && (
+              <span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary shadow-[0_0_8px_hsl(var(--primary))]" />
+            )}
+          </a>
+        ))}
+        <a
+          href="https://matrix.to/#/#fossla:matrix.org"
+          class="ml-4 rounded border border-primary bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+        >
+          Join Community
+        </a>
+      </div>
+      <button
+        class="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+        type="button"
+        data-mobile-toggle
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <Icon name="lucide:menu" class="h-6 w-6" data-state="closed" />
+        <Icon name="lucide:x" class="hidden h-6 w-6" data-state="open" />
+      </button>
+    </div>
+    <div id="mobile-nav" class="hidden flex-col gap-2 border-t border-border py-4 md:hidden">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          data-mobile-link
+          class={`rounded px-4 py-3 text-sm transition-colors ${
+            isActive(item.href)
+              ? "text-primary bg-secondary"
+              : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href="https://matrix.to/#/#fossla:matrix.org"
+        class="mx-4 mt-2 rounded border border-primary bg-primary px-4 py-2 text-center text-sm font-semibold text-primary-foreground"
+      >
+        Join Community
+      </a>
+    </div>
+  </div>
+  <script type="module">
+    const toggle = document.querySelector('[data-mobile-toggle]');
+    const menu = document.getElementById('mobile-nav');
+
+    const updateIcons = (isOpen) => {
+      const openIcon = toggle?.querySelector('[data-state="open"]');
+      const closedIcon = toggle?.querySelector('[data-state="closed"]');
+      openIcon?.classList.toggle('hidden', !isOpen);
+      closedIcon?.classList.toggle('hidden', isOpen);
+    };
+
+    updateIcons(false);
+
+    const setState = (open) => {
+      toggle?.setAttribute('aria-expanded', String(open));
+      menu?.classList.toggle('hidden', !open);
+      updateIcons(open);
+    };
+
+    toggle?.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      setState(!isOpen);
+    });
+
+    menu?.querySelectorAll('[data-mobile-link]').forEach((link) => {
+      link.addEventListener('click', () => setState(false));
+    });
+  </script>
+</nav>
