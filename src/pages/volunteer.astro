@@ -1,0 +1,148 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+
+const opportunities = [
+  {
+    icon: "lucide:users",
+    title: "Community Support",
+    description: "Welcome newcomers, answer questions, and keep conversations inclusive on chat and at events.",
+    highlights: ["Greet first-timers", "Share starter resources", "Moderate online channels"]
+  },
+  {
+    icon: "lucide:calendar-clock",
+    title: "Event Crew",
+    description: "Help run meetups, workshops, and hackathons—logistics, registration, and on-the-day support.",
+    highlights: ["Check-ins and AV setup", "Speaker coordination", "Photography or live notes"]
+  },
+  {
+    icon: "lucide:code-2",
+    title: "Project Contributors",
+    description: "Pair with maintainers to triage issues, improve docs, and ship features that serve Ladakh.",
+    highlights: ["Good-first-issue pairing", "Docs and localization", "QA and testing"]
+  },
+  {
+    icon: "lucide:megaphone",
+    title: "Outreach & Content",
+    description: "Spread the word with social posts, recaps, and onboarding guides so more people can join in.",
+    highlights: ["Social media updates", "Blog or recap writing", "Design simple visuals"]
+  }
+];
+
+const steps = [
+  {
+    title: "Say hi on Telegram",
+    description: "Join the community chat and let us know how you'd like to help.",
+    actionLabel: "Open Telegram",
+    actionHref: "https://t.me/fossla"
+  },
+  {
+    title: "Pick a focus",
+    description: "Choose a role that fits your skills—community, events, code, or outreach.",
+    actionLabel: "Browse Projects",
+    actionHref: "/projects"
+  },
+  {
+    title: "Co-lead with a buddy",
+    description: "We'll pair you with a maintainer or organizer to make sure you're supported.",
+    actionLabel: "Meet Organizers",
+    actionHref: "/team"
+  }
+];
+---
+<BaseLayout title="Volunteer with FOSS LA" description="Join the crew that keeps FOSS LA welcoming, organized, and shipping community projects.">
+  <section class="container mx-auto px-4 pt-24 pb-16">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-semibold text-primary">
+        <Icon name="lucide:sparkles" class="h-4 w-4" />
+        Community-powered in Ladakh
+      </p>
+      <h1 class="mb-6 text-4xl font-bold md:text-5xl">Volunteer with FOSS LA</h1>
+      <p class="mx-auto mb-8 max-w-3xl text-lg text-muted-foreground">
+        Help us welcome newcomers, run smooth events, and build projects that serve our region. No matter your background,
+        there's a way to contribute.
+      </p>
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a
+          href="https://t.me/fossla"
+          class="group inline-flex items-center justify-center rounded border border-primary bg-primary px-6 py-3 text-lg font-semibold text-primary-foreground transition hover:bg-primary/90"
+        >
+          Join the Telegram
+          <Icon name="lucide:arrow-right" class="ml-2 h-4 w-4 transition group-hover:translate-x-1" />
+        </a>
+        <a
+          href="/projects"
+          class="inline-flex items-center justify-center rounded border border-border px-6 py-3 text-lg font-semibold text-foreground transition hover:border-primary"
+        >
+          Explore Projects
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-card/30 py-16">
+    <div class="container mx-auto px-4">
+      <div class="mb-12 text-center">
+        <h2 class="mb-3 text-3xl font-bold md:text-4xl">Ways You Can Help</h2>
+        <p class="mx-auto max-w-2xl text-muted-foreground">Pick one focus area or try a few—organizers will help you onboard.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {opportunities.map((item) => (
+          <div class="flex h-full flex-col rounded border border-border bg-card/50 p-6 transition hover:border-primary/50">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+              <Icon name={item.icon} class="h-6 w-6 text-primary" />
+            </div>
+            <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
+            <p class="mb-4 text-sm text-muted-foreground">{item.description}</p>
+            <ul class="mt-auto list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+              {item.highlights.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="mb-10 text-center">
+        <h2 class="mb-3 text-3xl font-bold md:text-4xl">How to Start</h2>
+        <p class="mx-auto max-w-2xl text-muted-foreground">Follow these steps to plug in fast and get paired with the right people.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {steps.map((step, index) => (
+          <div class="rounded border border-border bg-card/50 p-6">
+            <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+              {index + 1}
+            </div>
+            <h3 class="mb-2 text-lg font-semibold">{step.title}</h3>
+            <p class="mb-4 text-sm text-muted-foreground">{step.description}</p>
+            <a href={step.actionHref} class="text-sm font-semibold text-primary hover:underline">
+              {step.actionLabel}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-primary/20 bg-primary/5 py-16">
+    <div class="container mx-auto px-4 text-center">
+      <Icon name="lucide:hand-heart" class="mx-auto mb-4 h-14 w-14 text-primary" />
+      <h2 class="mb-3 text-3xl font-bold md:text-4xl">Ready to help out?</h2>
+      <p class="mx-auto mb-6 max-w-2xl text-lg text-muted-foreground">
+        Tell us your interests and time availability. We'll connect you with the right organizer or maintainer.
+      </p>
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a href="https://t.me/fossla" class="rounded border border-primary bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-primary/90">
+          Message on Telegram
+        </a>
+        <a href="/events" class="rounded border border-border px-6 py-3 font-semibold text-foreground transition hover:border-primary">
+          Meet us at an Event
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

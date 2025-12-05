@@ -1,0 +1,133 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+
+const options = [
+  {
+    icon: "lucide:heart-handshake",
+    title: "Community Donations",
+    description: "Individual contributions keep workshops free and inclusive. Every amount helps us cover venue, internet, and snacks."
+  },
+  {
+    icon: "lucide:building-2",
+    title: "Venue & Logistics",
+    description: "Offer space, equipment, or internet for meetups and hackathons—critical for hands-on learning."
+  },
+  {
+    icon: "lucide:cpu",
+    title: "Hardware & Devices",
+    description: "Laptops, SBCs, routers, and peripherals help students learn, prototype, and contribute upstream."
+  },
+  {
+    icon: "lucide:megaphone",
+    title: "Sponsorships",
+    description: "Fund a workshop track or scholarship; we'll coordinate materials, mentors, and local outreach."
+  }
+];
+
+const steps = [
+  {
+    title: "Tell us how you'd like to help",
+    body: "Share whether it's funds, venue, hardware, or sponsorship so we can match the need to your offer.",
+    cta: { label: "Email contact@fossla.org", href: "mailto:contact@fossla.org?subject=Supporting%20FOSS%20LA" }
+  },
+  {
+    title: "Confirm details",
+    body: "We align on dates, budgets, acknowledgement preferences, and any compliance needs.",
+    cta: { label: "Chat on Telegram", href: "https://t.me/fossla" }
+  },
+  {
+    title: "Make it happen",
+    body: "We publish the support, run the event or initiative, and share back outcomes with the community.",
+    cta: { label: "See Upcoming Events", href: "/events" }
+  }
+];
+---
+<BaseLayout title="Support FOSS LA" description="Donate or sponsor to keep FOSS learning free and open in Ladakh.">
+  <section class="container mx-auto px-4 pt-24 pb-16">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-semibold text-primary">
+        <Icon name="lucide:sparkles" class="h-4 w-4" />
+        Your support powers community learning
+      </p>
+      <h1 class="mb-6 text-4xl font-bold md:text-5xl">Support FOSS LA</h1>
+      <p class="mx-auto mb-8 max-w-3xl text-lg text-muted-foreground">
+        Help us run open, accessible workshops, meetups, and contributor programs across Ladakh. We welcome financial and in-kind support.
+      </p>
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a
+          href="mailto:contact@fossla.org?subject=Supporting%20FOSS%20LA"
+          class="group inline-flex items-center justify-center rounded border border-primary bg-primary px-6 py-3 text-lg font-semibold text-primary-foreground transition hover:bg-primary/90"
+        >
+          Email the organizers
+          <Icon name="lucide:arrow-right" class="ml-2 h-4 w-4 transition group-hover:translate-x-1" />
+        </a>
+        <a
+          href="https://t.me/fossla"
+          class="inline-flex items-center justify-center rounded border border-border px-6 py-3 text-lg font-semibold text-foreground transition hover:border-primary"
+        >
+          Chat on Telegram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-card/30 py-16">
+    <div class="container mx-auto px-4">
+      <div class="mb-12 text-center">
+        <h2 class="mb-3 text-3xl font-bold md:text-4xl">Ways to Support</h2>
+        <p class="mx-auto max-w-2xl text-muted-foreground">Choose the form of support that fits you or your organization best.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {options.map((item) => (
+          <div class="flex h-full flex-col rounded border border-border bg-card/50 p-6 transition hover:border-primary/50">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+              <Icon name={item.icon} class="h-6 w-6 text-primary" />
+            </div>
+            <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
+            <p class="text-sm text-muted-foreground">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="mb-10 text-center">
+        <h2 class="mb-3 text-3xl font-bold md:text-4xl">How We Coordinate</h2>
+        <p class="mx-auto max-w-2xl text-muted-foreground">Clear steps so you know what happens after you reach out.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {steps.map((step, idx) => (
+          <div class="rounded border border-border bg-card/50 p-6">
+            <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+              {idx + 1}
+            </div>
+            <h3 class="mb-2 text-lg font-semibold">{step.title}</h3>
+            <p class="mb-4 text-sm text-muted-foreground">{step.body}</p>
+            <a href={step.cta.href} class="text-sm font-semibold text-primary hover:underline">{step.cta.label}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-primary/20 bg-primary/5 py-16">
+    <div class="container mx-auto px-4 text-center">
+      <Icon name="lucide:clipboard-check" class="mx-auto mb-4 h-14 w-14 text-primary" />
+      <h2 class="mb-3 text-3xl font-bold md:text-4xl">Transparency and Impact</h2>
+      <p class="mx-auto mb-6 max-w-3xl text-lg text-muted-foreground">
+        We share how support is used—covering venue, connectivity, materials, and scholarships. After each initiative, we publish a short recap so you see the impact.
+      </p>
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a href="mailto:contact@fossla.org?subject=Supporting%20FOSS%20LA" class="rounded border border-primary bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-primary/90">
+          Start a donation
+        </a>
+        <a href="/events" class="rounded border border-border px-6 py-3 font-semibold text-foreground transition hover:border-primary">
+          See where it goes
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

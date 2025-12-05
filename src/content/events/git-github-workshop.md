@@ -1,7 +1,7 @@
 ---
 title: "Git & GitHub Workshop"
 description: "Learn version control basics and collaborative workflows."
-date: 2024-02-10
+date: 2026-02-10
 time: "14:00 - 17:00"
 location: "Leh Community Center"
 type: "Workshop"

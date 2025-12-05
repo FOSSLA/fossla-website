@@ -1,0 +1,158 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+
+const tiers = [
+  {
+    name: "Community Partner",
+    amount: "₹25k+ or in-kind",
+    benefits: [
+      "Logo on event slides and recap",
+      "Shout-out in Telegram and blog",
+      "2 team invites to one workshop"
+    ],
+    icon: "lucide:hand-heart"
+  },
+  {
+    name: "Workshop Sponsor",
+    amount: "₹75k+",
+    benefits: [
+      "Co-branded workshop track",
+      "Booth/table at the venue",
+      "3 team invites + mentorship slot"
+    ],
+    icon: "lucide:beaker"
+  },
+  {
+    name: "Hackathon Sponsor",
+    amount: "₹150k+",
+    benefits: [
+      "Branding on hackathon collateral",
+      "Problem statement slot",
+      "Judging seat + prizes mention"
+    ],
+    icon: "lucide:rocket"
+  },
+  {
+    name: "Infrastructure Ally",
+    amount: "Venue / Devices / Connectivity",
+    benefits: [
+      "Branding at supported sessions",
+      "Thank-you in recaps and socials",
+      "Invitation to speak for 5 mins"
+    ],
+    icon: "lucide:server"
+  }
+];
+
+const steps = [
+  {
+    title: "Share your focus",
+    description: "Tell us which track—workshops, hackathons, scholarships, or infrastructure—fits your goals.",
+    action: { href: "mailto:contact@fossla.org?subject=Sponsoring%20FOSS%20LA", label: "Email contact@fossla.org" }
+  },
+  {
+    title: "Align the scope",
+    description: "We co-design the budget, acknowledgement, and impact metrics for the sponsorship.",
+    action: { href: "https://t.me/fossla", label: "Chat on Telegram" }
+  },
+  {
+    title: "Activate and report",
+    description: "We execute the event/initiative, then share photos, stats, and learnings with you.",
+    action: { href: "/events", label: "See upcoming events" }
+  }
+];
+---
+<BaseLayout title="Sponsor FOSS LA" description="Partner with FOSS LA to power community tech education in Ladakh.">
+  <section class="container mx-auto px-4 pt-24 pb-16">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-semibold text-primary">
+        <Icon name="lucide:handshake" class="h-4 w-4" />
+        Partner with a community-first org
+      </p>
+      <h1 class="mb-6 text-4xl font-bold md:text-5xl">Sponsor FOSS LA</h1>
+      <p class="mx-auto mb-8 max-w-3xl text-lg text-muted-foreground">
+        Fund hands-on workshops, hackathons, and contributor programs that grow open source talent in Ladakh. We offer clear tiers and transparent reporting.
+      </p>
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a
+          href="mailto:contact@fossla.org?subject=Sponsoring%20FOSS%20LA"
+          class="group inline-flex items-center justify-center rounded border border-primary bg-primary px-6 py-3 text-lg font-semibold text-primary-foreground transition hover:bg-primary/90"
+        >
+          Email the organizers
+          <Icon name="lucide:arrow-right" class="ml-2 h-4 w-4 transition group-hover:translate-x-1" />
+        </a>
+        <a
+          href="https://t.me/fossla"
+          class="inline-flex items-center justify-center rounded border border-border px-6 py-3 text-lg font-semibold text-foreground transition hover:border-primary"
+        >
+          Chat on Telegram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-card/30 py-16">
+    <div class="container mx-auto px-4">
+      <div class="mb-12 text-center">
+        <h2 class="mb-3 text-3xl font-bold md:text-4xl">Sponsorship Tiers</h2>
+        <p class="mx-auto max-w-2xl text-muted-foreground">Pick a tier or mix in-kind support—let's tailor it to your goals.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {tiers.map((tier) => (
+          <div class="flex h-full flex-col rounded border border-border bg-card/50 p-6 transition hover:border-primary/50">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+              <Icon name={tier.icon} class="h-6 w-6 text-primary" />
+            </div>
+            <h3 class="text-lg font-semibold">{tier.name}</h3>
+            <p class="mb-2 text-sm text-muted-foreground">{tier.amount}</p>
+            <ul class="mt-2 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+              {tier.benefits.map((benefit) => (
+                <li>{benefit}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="mb-10 text-center">
+        <h2 class="mb-3 text-3xl font-bold md:text-4xl">How Sponsorship Works</h2>
+        <p class="mx-auto max-w-2xl text-muted-foreground">Simple steps from hello to impact report.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {steps.map((step, idx) => (
+          <div class="rounded border border-border bg-card/50 p-6">
+            <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+              {idx + 1}
+            </div>
+            <h3 class="mb-2 text-lg font-semibold">{step.title}</h3>
+            <p class="mb-4 text-sm text-muted-foreground">{step.description}</p>
+            <a href={step.action.href} class="text-sm font-semibold text-primary hover:underline">{step.action.label}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-primary/20 bg-primary/5 py-16">
+    <div class="container mx-auto px-4 text-center">
+      <Icon name="lucide:medal" class="mx-auto mb-4 h-14 w-14 text-primary" />
+      <h2 class="mb-3 text-3xl font-bold md:text-4xl">Impact & Recognition</h2>
+      <p class="mx-auto mb-6 max-w-3xl text-lg text-muted-foreground">
+        We acknowledge sponsors across slides, recaps, and socials. After each initiative, we share a concise report with photos, attendance, and outcomes.
+      </p>
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a href="mailto:contact@fossla.org?subject=Sponsoring%20FOSS%20LA" class="rounded border border-primary bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-primary/90">
+          Start a sponsorship
+        </a>
+        <a href="/donate" class="rounded border border-border px-6 py-3 font-semibold text-foreground transition hover:border-primary">
+          Prefer to donate?
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

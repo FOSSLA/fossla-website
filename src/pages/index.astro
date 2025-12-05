@@ -11,13 +11,6 @@ const features = [
   { icon: "lucide:calendar", title: "Events & Meetups", description: "Hackathons, install-fests, and community gatherings." }
 ];
 
-const stats = [
-  { label: "Active Members", value: "50+" },
-  { label: "Projects", value: "12" },
-  { label: "Events Held", value: "8" },
-  { label: "Workshops", value: "15" }
-];
-
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
@@ -44,7 +37,7 @@ const posts = (await getCollection("blog"))
       </p>
       <div class="flex flex-col justify-center gap-4 sm:flex-row">
         <a
-          href="https://matrix.to/#/#fossla:matrix.org"
+          href="https://t.me/fossla"
           class="group inline-flex items-center justify-center rounded border border-primary bg-primary px-6 py-3 text-lg font-semibold text-primary-foreground transition hover:bg-primary/90"
         >
           Join the Community
@@ -56,14 +49,6 @@ const posts = (await getCollection("blog"))
         >
           Explore Projects
         </a>
-      </div>
-      <div class="mx-auto mt-20 grid max-w-4xl grid-cols-2 gap-8 md:grid-cols-4">
-        {stats.map((stat) => (
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary md:text-4xl">{stat.value}</div>
-            <div class="text-sm text-muted-foreground">{stat.label}</div>
-          </div>
-        ))}
       </div>
     </div>
   </section>
@@ -132,7 +117,7 @@ const posts = (await getCollection("blog"))
         Join our community of developers, students, and FOSS enthusiasts in Ladakh.
       </p>
       <div class="flex flex-col justify-center gap-4 sm:flex-row">
-        <a href="https://matrix.to/#/#fossla:matrix.org" class="rounded border border-primary bg-primary px-6 py-3 font-semibold text-primary-foreground">
+        <a href="https://t.me/fossla" class="rounded border border-primary bg-primary px-6 py-3 font-semibold text-primary-foreground">
           Join Community
         </a>
         <a href="/events" class="rounded border border-border px-6 py-3 font-semibold text-foreground hover:border-primary">

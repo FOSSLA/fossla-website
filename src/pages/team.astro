@@ -42,6 +42,11 @@ const initials = (name: string) => name.split(" ").map((part) => part[0]).join("
                   <Icon name="lucide:twitter" class="h-4 w-4" />
                 </a>
               )}
+              {member.data.linkedin && (
+                <a href={member.data.linkedin} class="inline-flex h-8 w-8 items-center justify-center rounded hover:text-primary" target="_blank" rel="noopener noreferrer" aria-label={`${member.data.name} on LinkedIn`}>
+                  <Icon name="lucide:linkedin" class="h-4 w-4" />
+                </a>
+              )}
               {member.data.email && (
                 <a href={`mailto:${member.data.email}`} class="inline-flex h-8 w-8 items-center justify-center rounded hover:text-primary" aria-label={`Email ${member.data.name}`}>
                   <Icon name="lucide:mail" class="h-4 w-4" />

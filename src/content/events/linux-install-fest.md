@@ -1,11 +1,11 @@
 ---
 title: "Linux Install Fest"
 description: "Community-led install party for laptops and desktops."
-date: 2024-01-20
+date: 2024-03-20
 time: "10:00 - 15:00"
-location: "University Campus"
+location: "TBD"
 type: "Workshop"
 attendees: 35
-status: "past"
+status: "upcoming"
 ---
 Volunteers helped newcomers dual-boot, set up drivers, and secure their fresh installs.

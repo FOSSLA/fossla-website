@@ -19,7 +19,7 @@ values:
     description: "Projects focus on the needs of the Ladakh community."
     icon: "lucide:target"
 story:
-  - "FOSS LA was founded in 2024 by technologists who saw the need for a dedicated open source community in Ladakh."
+  - "FOSS LA was founded in late 2025 by technologists who saw the need for a dedicated open source community in Ladakh."
   - "Starting with a handful of members, we've grown into a community of developers, students, educators, and enthusiasts."
   - "We organize workshops, hackathons, and meetups that launch projects solving local problems."
 conduct:
