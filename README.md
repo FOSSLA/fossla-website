@@ -44,3 +44,13 @@ Collections are defined in `src/content/config.ts`. Update schemas there when ad
 ## Deployment
 
 Astro outputs a static `dist/` folder, so you can deploy via Netlify, Vercel, Cloudflare Pages, GitHub Pages, or any static host. Remember to run `npm run build` in CI/CD and publish the generated directory.
+
+## Contributing to the Blog
+
+We encourage community members to contribute blog posts! To add your own article:
+
+1. See the `src/content/blog/README.md` file for detailed instructions and a post template.
+2. Add your Markdown or text file to `src/content/blog/`.
+3. Open a pull request with your changes.
+
+Blog posts can cover open source, technology, community events, tutorials, or anything relevant to FOSS and Ladakh. Please review our [Code of Conduct](/about#conduct) before submitting.
