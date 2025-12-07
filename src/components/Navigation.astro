@@ -42,8 +42,15 @@ const isActive = (path: string) => (path === "/" ? normalizedPath === "/" : norm
           ))}
         </ul>
         <a
+          href="https://github.com/fossla"
+          class="ml-2 p-2 text-muted-foreground transition hover:text-primary"
+          aria-label="GitHub"
+        >
+          <Icon name="lucide:github" class="h-5 w-5" />
+        </a>
+        <a
           href="https://t.me/fossla"
-          class="ml-4 rounded border border-primary bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+          class="ml-2 rounded border border-primary bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
         >
           Join Community
         </a>
@@ -77,6 +84,15 @@ const isActive = (path: string) => (path === "/" ? normalizedPath === "/" : norm
           </li>
         ))}
       </ul>
+      <div class="flex items-center justify-center gap-4 mx-4 mt-2">
+        <a
+          href="https://github.com/fossla"
+          class="p-2 text-muted-foreground transition hover:text-primary"
+          aria-label="GitHub"
+        >
+          <Icon name="lucide:github" class="h-6 w-6" />
+        </a>
+      </div>
       <a
         href="https://t.me/fossla"
         class="mx-4 mt-2 rounded border border-primary bg-primary px-4 py-2 text-center text-sm font-semibold text-primary-foreground"
