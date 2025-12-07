@@ -49,7 +49,7 @@ Astro outputs a static `dist/` folder, so you can deploy via Netlify, Vercel, Cl
 
 We encourage community members to contribute blog posts! To add your own article:
 
-1. See the `src/content/blog/README.md` file for detailed instructions and a post template.
+1. See the `src/Blog.md` file for detailed instructions and a post template.
 2. Add your Markdown or text file to `src/content/blog/`.
 3. Open a pull request with your changes.
 
